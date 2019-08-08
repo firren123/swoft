@@ -6,7 +6,7 @@ use Annotation\Mapping\RequestMapping;
 
 /**
  * Class HomeController
- * @Controller(prefix="/index")
+ * @Controller(prefix="/test")
  */
 class HomeController
 {

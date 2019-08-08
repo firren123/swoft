@@ -17,5 +17,13 @@ $loader = require __DIR__ . "/vendor/autoload.php";
 $obj = new \App\Http\Controller\HomeController();
 
 $re = new ReflectionClass($obj);
-$a = $re->getDocComment();
-var_dump($a);
+
+\Doctrine\Common\Annotations\AnnotationRegistry::registerLoader([$loader,'loadClass']);
+
+$reader = new \Doctrine\Common\Annotations\AnnotationReader();
+$obj = new \App\Http\Controller\HomeController();
+$re = new \ReflectionClass($obj);
+
+$class_anno = $reader->getClassAnnotations($re);
+//$a = $re->getMethod('index');
+var_dump($class_anno);
