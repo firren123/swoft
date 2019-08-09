@@ -21,7 +21,7 @@ $loader = require __DIR__ . "/vendor/autoload.php";
 $server = new Swoole\Http\Server('0.0.0.0',9500);
 
 $server->on("request",function($request, $response){
-    var_dump(\Core\Application::getBeans());
+    var_dump(\Core\Bean::allBeans());
 });
 
 $server->start();

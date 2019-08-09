@@ -8,14 +8,14 @@
  */
 namespace Core;
 
+use Annotation\Mapping\BeanMapping;
 use Annotation\Mapping\RequestMapping;
+use Annotation\Parser\BeanParser;
 use Annotation\Parser\RequestMappingParser;
 use \Doctrine\Common\Annotations\AnnotationRegistry;
 
 class Application
 {
-    protected static $beans;
-
     public static function init()
     {
         $loader = require dirname(__DIR__) . "/vendor/autoload.php";
@@ -32,18 +32,14 @@ class Application
     {
 
         $reader = new \Doctrine\Common\Annotations\AnnotationReader();
-        $obj = new Route();
+        $obj = new Bean();
         $re = new \ReflectionClass($obj);
         $class_annos = $reader->getClassAnnotations($re);
         foreach ($class_annos as $class_anno) {
             $routeName = $class_anno->getName();
-            self::$beans[$routeName] = $re->newInstance();
+            (new BeanParser())->parse($re->newInstance(),$routeName);
 
         }
-    }
-
-    public static function getBeans(){
-        return self::$beans;
     }
 
     public static function loadAnnotationRoute()

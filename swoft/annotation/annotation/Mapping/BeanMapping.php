@@ -18,7 +18,7 @@ use Doctrine\Common\Annotations\Annotation\Target;
  *
  * @since 2.0
  */
-final class Bean
+final class BeanMapping
 {
     /**
      * Route group prefix for the controller
