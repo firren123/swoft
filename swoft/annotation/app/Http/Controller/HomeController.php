@@ -6,7 +6,7 @@ use Annotation\Mapping\RequestMapping;
 
 /**
  * Class HomeController
- * @Controller(prefix="/test")
+ * @Controller(prefix="/index")
  */
 class HomeController
 {
@@ -16,7 +16,7 @@ class HomeController
      */
     public function index()
     {
-        echo "test";
+        echo "index11111111111111111";
     }
     /**
      * @RequestMapping("/er")
@@ -24,6 +24,15 @@ class HomeController
      */
     public function er()
     {
-        echo "er";
+        echo "er111111111111111111";
+    }
+
+    /**
+     * @RequestMapping("/output")
+     * @throws \Throwable
+     */
+    public function out()
+    {
+        echo "out111111111111111";
     }
 }

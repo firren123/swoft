@@ -2,11 +2,9 @@
 
 namespace Annotation\Parser;
 
-use Swoft\Annotation\Annotation\Mapping\AnnotationParser;
-use Swoft\Annotation\Annotation\Parser\Parser;
-use Swoft\Annotation\Exception\AnnotationException;
-use Swoft\Http\Server\Annotation\Mapping\RequestMapping;
-use Swoft\Http\Server\Router\RouteRegister;
+use Core\Route;
+use Annotation\Mapping\AnnotationParser;
+use Annotation\Parser\Parser;
 
 /**
  * Class RequestMappingParser
@@ -15,7 +13,7 @@ use Swoft\Http\Server\Router\RouteRegister;
  *
  * @AnnotationParser(RequestMapping::class)
  */
-class RequestMappingParser extends Parser
+class RequestMappingParser
 {
     /**
      * @param int            $type
@@ -24,21 +22,18 @@ class RequestMappingParser extends Parser
      * @return array
      * @throws AnnotationException
      */
-    public function parse(int $type, $annotation): array
+    public function parse($routePrefix, $routePath, $handle, $annotation): array
     {
-        if ($type !== self::TYPE_METHOD) {
-            throw new AnnotationException('`@RequestMapping` must be defined on class method!');
-        }
 
-        $routeInfo = [
-            'action'  => $this->methodName,
-            'route'   => $annotation->getRoute(),
-            'method' => $annotation->getMethod(),
-            'params'  => $annotation->getParams(),
-        ];
+//        $routeInfo = [
+//            'action'  => $this->methodName,
+//            'route'   => $annotation->getRoute(),
+//            'method' => $annotation->getMethod(),
+//            'params'  => $annotation->getParams(),
+//        ];
 
         // Add route info for controller action
-        RouteRegister::addRoute($this->className, $routeInfo);
+        Route::addRoute($routePrefix, $routePath, $handle, $annotation);
 
         return [];
     }

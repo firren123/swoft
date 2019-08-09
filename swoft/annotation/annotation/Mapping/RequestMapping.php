@@ -1,6 +1,6 @@
 <?php
 
-namespace annotation\Mapping;
+namespace Annotation\Mapping;
 
 use Doctrine\Common\Annotations\Annotation\Required;
 use Doctrine\Common\Annotations\Annotation\Target;
@@ -28,7 +28,6 @@ class RequestMapping
      *
      * @var array
      */
-    private $method = [RequestMethod::GET, RequestMethod::POST];
 
     /**
      * Routing path params binding. eg. {"id"="\d+"}
@@ -67,19 +66,6 @@ class RequestMapping
         return $this->route;
     }
 
-    /**
-     * @return array
-     */
-    public function getMethod(): array
-    {
-        return $this->method;
-    }
 
-    /**
-     * @return array
-     */
-    public function getParams(): array
-    {
-        return $this->params;
-    }
+
 }

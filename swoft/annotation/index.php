@@ -14,16 +14,14 @@
 
 $loader = require __DIR__ . "/vendor/autoload.php";
 
-$obj = new \App\Http\Controller\HomeController();
+\Core\Application::init();
 
-$re = new ReflectionClass($obj);
+//var_dump(\Core\Route::all());exit;
 
-\Doctrine\Common\Annotations\AnnotationRegistry::registerLoader([$loader,'loadClass']);
+$server = new Swoole\Http\Server('0.0.0.0',9500);
 
-$reader = new \Doctrine\Common\Annotations\AnnotationReader();
-$obj = new \App\Http\Controller\HomeController();
-$re = new \ReflectionClass($obj);
+$server->on("request",function($request, $response){
+    var_dump(\Core\Application::getBeans());
+});
 
-$class_anno = $reader->getClassAnnotations($re);
-//$a = $re->getMethod('index');
-var_dump($class_anno);
+$server->start();
