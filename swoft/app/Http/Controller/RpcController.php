@@ -4,6 +4,7 @@
 namespace App\Http\Controller;
 
 use App\Rpc\Lib\UserInterface;
+use App\Rpc\Lib\PayInterface;
 use Exception;
 use Swoft\Co;
 use Swoft\Exception\SwoftException;
@@ -35,6 +36,12 @@ class RpcController
     private $userService2;
 
     /**
+     * @Reference(pool="pay.pool")
+     * @var PayInterface
+     */
+    private $payService;
+
+    /**
      * @RequestMapping("getList")
      *
      * @return array
@@ -43,8 +50,9 @@ class RpcController
     {
         $result  = $this->userService->getList(12, 'type');
         $result2 = $this->userService2->getList(12, 'type');
+        $result3 = $this->payService->pay();
 
-        return [$result, $result2];
+        return [$result, $result2, $result3];
     }
 
     /**

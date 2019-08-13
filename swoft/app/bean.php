@@ -91,7 +91,31 @@ return [
     'user'             => [
         'class'   => ServiceClient::class,
         'host'    => '127.0.0.1',
-        'port'    => 18307,
+        'port'    => 9508,
+        'setting' => [
+            'timeout'         => 0.5,
+            'connect_timeout' => 1.0,
+            'write_timeout'   => 10.0,
+            'read_timeout'    => 0.5,
+        ],
+        'packet'  => bean('rpcClientPacket')
+    ],
+    'client'             => [
+        'class'   => ServiceClient::class,
+        'host'    => '127.0.0.1',
+        'port'    => 9508,
+        'setting' => [
+            'timeout'         => 0.5,
+            'connect_timeout' => 1.0,
+            'write_timeout'   => 10.0,
+            'read_timeout'    => 0.5,
+        ],
+        'packet'  => bean('rpcClientPacket')
+    ],
+    'pay'             => [
+        'class'   => ServiceClient::class,
+        'host'    => '127.0.0.1',
+        'port'    => 9508,
         'setting' => [
             'timeout'         => 0.5,
             'connect_timeout' => 1.0,
@@ -104,8 +128,14 @@ return [
         'class'  => ServicePool::class,
         'client' => bean('user')
     ],
+    'pay.pool'        => [
+        'class'  => ServicePool::class,
+        'client' => bean('pay')
+    ],
     'rpcServer'        => [
         'class' => ServiceServer::class,
+        'port'    => 9508,
+
     ],
     'wsServer'         => [
         'class'   => WebSocketServer::class,
