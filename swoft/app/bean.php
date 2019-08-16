@@ -103,7 +103,7 @@ return [
     'client'             => [
         'class'   => ServiceClient::class,
         'host'    => '127.0.0.1',
-        'port'    => 9508,
+        'port'    => 9505,
         'setting' => [
             'timeout'         => 0.5,
             'connect_timeout' => 1.0,
@@ -113,7 +113,7 @@ return [
         'packet'  => bean('rpcClientPacket')
     ],
     'pay'             => [
-        'class'   => ServiceClient::class,
+        'class'   => App\Rpc\Client\Client::class,
         'host'    => '127.0.0.1',
         'port'    => 9508,
         'setting' => [
