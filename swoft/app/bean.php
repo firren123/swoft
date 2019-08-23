@@ -89,8 +89,9 @@ return [
         ]
     ],
     'user'             => [
-        'class'   => ServiceClient::class,
+        'class'   => \App\Rpc\Client\Client::class,
         'host'    => '127.0.0.1',
+        'serviceName'=> 'user',
         'port'    => 9508,
         'setting' => [
             'timeout'         => 0.5,
@@ -101,8 +102,9 @@ return [
         'packet'  => bean('rpcClientPacket')
     ],
     'client'             => [
-        'class'   => ServiceClient::class,
+        'class'   => App\Rpc\Client\Client::class,
         'host'    => '127.0.0.1',
+        'serviceName'=> 'client',
         'port'    => 9505,
         'setting' => [
             'timeout'         => 0.5,
@@ -114,7 +116,21 @@ return [
     ],
     'pay'             => [
         'class'   => App\Rpc\Client\Client::class,
+        'host'    => '39.96.196.246',
+        'serviceName'=> 'pay',
+        'port'    => 9508,
+        'setting' => [
+            'timeout'         => 0.5,
+            'connect_timeout' => 1.0,
+            'write_timeout'   => 10.0,
+            'read_timeout'    => 0.5,
+        ],
+        'packet'  => bean('rpcClientPacket')
+    ],
+    'live'             => [
+        'class'   => App\Rpc\Client\Client::class,
         'host'    => '127.0.0.1',
+        'serviceName'=> 'live',
         'port'    => 9508,
         'setting' => [
             'timeout'         => 0.5,
@@ -131,6 +147,9 @@ return [
     'pay.pool'        => [
         'class'  => ServicePool::class,
         'client' => bean('pay')
+    ],
+    'ConsulProvider'=> [
+        'class'=>\App\Components\Consul\ConsulProvider::class,
     ],
     'rpcServer'        => [
         'class' => ServiceServer::class,
@@ -161,5 +180,6 @@ return [
     ],
     'cliRouter'         => [
         // 'disabledGroups' => ['demo', 'test'],
-    ]
+    ],
+
 ];

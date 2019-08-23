@@ -12,11 +12,20 @@ use Swoft\Rpc\Client\Contract\ProviderInterface;
 
 class Client extends \Swoft\Rpc\Client\Client
 {
+
+    protected $serviceName;
+
     /**
+     *
      * @return ProviderInterface
      */
     public function getProvider(): ?ProviderInterface
     {
+        var_dump($this->getServiceName());
         return $this->provider = new Provider();
+    }
+
+    public function getServiceName(){
+       return $this->serviceName;
     }
 }

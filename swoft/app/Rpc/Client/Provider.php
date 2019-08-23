@@ -14,12 +14,16 @@ use Swoft\Rpc\Client\Contract\ProviderInterface;
 
 class Provider implements  ProviderInterface
 {
+
+
+
     public function getList(Client $client):array
     {
         //
+        var_dump($client);
         return [
             '127.0.0.1:9508',
-            '127.0.0.1:9505'
+            '127.0.0.1:9508'
         ];
     }
 
