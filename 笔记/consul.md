@@ -55,6 +55,8 @@ docker run -itd --name consul3 --network consulnetwork -P --ip 192.168.2.13 cons
 
 docker run -itd --name consul4 --network consulnetwork -p 8500:8500 -P --ip 192.168.2.14 consul
 
+docker run -itd --name consul5 --network consulnetwork -p 8500:8500 -v /www/liuxing/soft:/data -P --ip 192.168.2.15 consul
+
 
 ```
 ## 4.启动consul
@@ -70,6 +72,13 @@ consul agent -server -node=server3 -bootstrap-expect=3 -bind=192.168.2.13 -data-
  consul agent -server -ui -node=server -bootstrap-expect=1 -bind=172.17.0.2 -data-dir /consul/data -join=172.17.0.2 -client 0.0.0.0
 
  consul agent -server -ui -node=server -bootstrap-expect=1 -bind=192.168.2.14 -data-dir /consul/data -join=192.168.2.14 -client 0.0.0.0
+ 
+  consul agent -server -ui -node=server -bootstrap-expect=1 -bind=192.168.2.14 -data-dir /consul/data -join=192.168.2.14 -client 0.0.0.0
+
+ consul agent -server -ui -node=server -bootstrap-expect=1 -bind=192.168.2.15 -data-dir /consul/data -join=192.168.2.15 -client 0.0.0.0
+ 
+  /Users/lichenjun/soft/consul/consul agent -server -ui -node=server -bootstrap-expect=1 -bind=127.0.0.1 -data-dir /Users/lichenjun/soft/consul/data -join=127.0.0.1 -client 0.0.0.0
+ 
 
 ```
 
@@ -86,6 +95,9 @@ agent
 -server 表示启动的是一个服务
 -bootstrap-expect 1 表示等待多少个节点再启动，这里1个，就是自己
 -
+
+当提示方法不可访问的时候
+要检查请求的方式是否正确 put 请求方式，用了post 会报这个错误
 
 ```
 文档地址

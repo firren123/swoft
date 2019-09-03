@@ -21,12 +21,19 @@ return [
                 'tcp'      => '39.96.196.246:9503',
                 'interval' => '5s',
                 'timeout'  => '2s',
+            ],
+            "weights" => [
+                "passing"=> 22,
+                "warning"=> 1
             ]
         ],
         'discovery' => [
             'name' => 'user',
-            'dc' => 'dc',
+            'dc' => 'dc1',
             'passing' => true
-        ]
+        ],
+
     ],
 ];
+
+

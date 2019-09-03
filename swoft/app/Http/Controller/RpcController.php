@@ -56,12 +56,24 @@ class RpcController
     }
 
     /**
+     * @RequestMapping("pay")
+     *
+     * @return array
+     */
+    public function getPay(): array
+    {
+        $result3 = $this->payService->pay();
+
+        return [$result3];
+    }
+
+    /**
      * @RequestMapping("getPay")
      * @return mixed
      */
     public function getPayList():array
     {
-        $ret = bean('ConsulProvider')->getServer('pay');
+        $ret = bean('ConsulProvider')->getServerList('pay-php');
         return [$ret];
     }
     /**
